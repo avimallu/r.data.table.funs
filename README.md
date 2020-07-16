@@ -18,10 +18,11 @@ The data can be aggregated for, say, recent 3, 6, 12 months and year to date by 
 (check the code for this variable definition).
 
 ## decile
-Often, in sales analytics, you are required to group categories (districts, doctors, countries) into 10 groups that have equal contributions,
-in decreasing order of contribution i.e. the first group will have the least members that contribute 10% of some value,
-the next will have more members that contribute the next 10%, all the way to the last group that will have the highest number of
-members that contirbute the bottom 10% of the value. This relates to percentiles, althought they are not identical.
+Often, in sales analytics, one is required to group certain categorical variables into buckets that contribute to 10% of overall sales,
+in decreasing order of contribution. That is, in the first bucket, you'll have very few members that, together contribute to 10%, and
+this member count increases as the bucket count increases, each contributing to 10% of the overall sales. In terms of percentiles, the first
+bucket can be defined as the members that are in the top 90%ile of contributors, the second bucket will be those that are in the top 80%ile
+of contributors, excluding the top 90%ile of contributors, and so on.
 
 ```
 decile_dt(x, decreasing = TRUE)
