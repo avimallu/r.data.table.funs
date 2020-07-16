@@ -17,7 +17,7 @@ agp(table_name, j, by, index)
 The data can be aggregated for, say, recent 3, 6, 12 months and year to date by suitably defining the values of the `date_period` list
 (check the code for this variable definition).
 
-## deciles
+## decile
 Often, in sales analytics, you are required to group categories (districts, doctors, countries) into 10 groups that have equal contributions,
 in decreasing order of contribution i.e. the first group will have the least members that contribute 10% of some value,
 the next will have more members that contribute the next 10%, all the way to the last group that will have the highest number of
