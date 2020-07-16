@@ -15,7 +15,40 @@ agp(table_name, j, by, index)
 ```
 
 The data can be aggregated for, say, recent 3, 6, 12 months and year to date by suitably defining the values of the `date_period` list
-(check the code for this variable definition).
+(check the code for this variable definition). For example, for the following glimpse of data:
+
+```
+> DT
+                dates        grp_1   grp_2     sales
+        1: 2019-01-01        India Buttons  5.857764
+        2: 2019-01-08       Brazil    Salt 94.159590
+        3: 2019-01-15        China Buttons 95.128017
+        4: 2019-01-22       Russia    Salt 17.057105
+        5: 2019-01-29 South Africa Buttons 68.489827
+       ---                                          
+ 99999996: 2022-09-27        India    Salt 43.997368
+ 99999997: 2022-10-04       Brazil Buttons 46.981903
+ 99999998: 2022-10-11        China    Salt  7.700367
+ 99999999: 2022-10-18       Russia Buttons 84.551482
+100000000: 2022-10-25 South Africa    Salt 75.611129
+```
+
+the summarized dataset will look something like:
+
+```
+> agp_DT(DT, "sales", c("grp_1", "grp_2"), "dates")
+           grp_1   grp_2 sales_r3m sales_p3m sales_r6m sales_p6m sales_ytd
+ 1:       Brazil Buttons  24986904  50009826  74996730  50008718 262554380
+ 2:       Brazil    Salt  24996211  24986346  49982557  75021112 245026785
+ 3:        China Buttons  25022494  24988808  50011302  74985508 245044854
+ 4:        China    Salt  49967206  25022877  74990082  50008190 262566617
+ 5:        India Buttons  25030072  24992465  50022537  75059273 245038138
+ 6:        India    Salt  24998593  49995222  74993814  50016927 262498605
+ 7:       Russia Buttons  50015343  24993829  75009172  75012270 262531196
+ 8:       Russia    Salt  24980912  25010533  49991445  74935847 262490950
+ 9: South Africa Buttons  24999193  50004908  75004101  50006625 262463146
+10: South Africa    Salt  50010186  24989640  74999826  75005350 262494492
+```
 
 ## decile
 Often, in sales analytics, one is required to group certain categorical variables into buckets that contribute to 10% of overall sales,
