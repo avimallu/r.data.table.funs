@@ -62,6 +62,6 @@ decile_dt(x, decreasing = TRUE)
 ```
 
 ## glean
-A quick hack-y replacement for `glimpse`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M).
+A quick hack-y replacement for `glimpse`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M). The colours are meant for differentiation, but not identifcation i.e. serves as an analytical aid while reading very long tables.
 
 ![glean screenshot](https://github.com/avimallu/r.data.table.funs/blob/master/screens/glean.JPG?raw=true)
