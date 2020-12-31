@@ -3,24 +3,22 @@ library(data.table)
 library(bit64)
 library(stringi)
 library(crayon)
-library(glue)
-library(numform)
 
-# DT <- data.table(
-#   logical = sample(c(TRUE, FALSE), 100, replace = TRUE),
-#   states  = state.name,
-#   species = iris$Species, 
-#   order_of_letters = factor(letters[1:26], ordered = TRUE),
-#   integral_numbers = as.integer(rnorm(100) * 100),
-#   numeric_values   = rnorm(100) * 100,
-#   integer64        = as.integer64("231982787612") +
-#                     (as.integer64(rnorm(1e4) * 1000)),
-#   range_of_date_values = seq.Date(
-#     as.Date("2019-01-01"), by = "1 month", length.out = 100),
-#   range_of_time_values = 
-#     as.POSIXct(rnorm(1e4), origin = as.Date("2019-01-01")),
-#   list_columns_also = list(letters[1:26], LETTERS[1:26], 1:26)
-# )
+DT <- data.table(
+  logical = sample(c(TRUE, FALSE), 100, replace = TRUE),
+  states  = state.name,
+  species = iris$Species,
+  order_of_letters = factor(letters[1:26], ordered = TRUE),
+  integral_numbers = as.integer(rnorm(100) * 100),
+  numeric_values   = rnorm(100) * 100,
+  integer64        = as.integer64("231982787612") +
+                    (as.integer64(rnorm(1e4) * 1000)),
+  range_of_date_values = seq.Date(
+    as.Date("2019-01-01"), by = "1 month", length.out = 100),
+  range_of_time_values =
+    as.POSIXct(rnorm(1e4), origin = as.Date("2019-01-01")),
+  list_columns_also = list(letters[1:26], LETTERS[1:26], 1:26)
+)
 
 vapply_1c = function (x, fun, ..., use.names = TRUE) {
   vapply(X = x, FUN = fun, ..., FUN.VALUE = NA_character_, USE.NAMES = use.names)
@@ -63,6 +61,30 @@ format_lines <- function(lines, classes) {
   
 }
 
+number_format <- function(x) {
+  
+  number_split <- strsplit(as.character(x), "")
+  
+  add_underline <- function(s_char) {
+    
+    for (i in rev(seq_along(s_char))) {
+      
+      j = length(s_char) - i
+      
+      if (((j %/% 3) %% 2 != 0)) {
+        s_char[i] = underline(s_char[i])
+      }
+      
+    }
+    
+    return(s_char)
+    
+    }
+  
+  vapply_1c(lapply(number_split, add_underline), paste0, collapse = "")
+  
+}
+
 glean_colnames <- function(col_names, col_len) {
   
   paste0(substr(
@@ -76,12 +98,9 @@ glean_values <- function(head, val_len) {
   
   head = as.data.table(head)
   numeric_cols = names(which(sapply(head, is.numeric)))
-  head[, (numeric_cols) := lapply(.SD, function(x) {
-    x = signif(x, 3)
-    f_denom(x, mix.denom = TRUE, digits = 2)
-  }),
+  head[, (numeric_cols) := lapply(.SD, signif, 3),
        .SDcols = numeric_cols]
-  
+
   # browser()
   
   values = substr(
@@ -126,7 +145,7 @@ glean <- function(x) {
   classes = vapply_1c(x, function(col) class(col)[1L], use.names=FALSE)
   abbs    = class_abb[classes]
   
-  lines  = format_values(
+  lines  = format_lines(
     paste0(
       "  ",
       stri_pad(col_nm, col_len, "right"), " ",
@@ -144,5 +163,8 @@ glean <- function(x) {
   
 }
 
-#glean(DT)
-#glean(Lahman::People)
+glean(DT)
+glean(Lahman::People)
+  
+print.data.table <- function(x) { print("Hahahahah") }
+rm(print.data.table)
