@@ -62,6 +62,6 @@ decile_dt(x, decreasing = TRUE)
 ```
 
 ## glean
-A quick hack-y replacement for `dplyr::glimpse` for `data.table`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M). The colours are meant for differentiation, but not identifcation i.e. serves as an analytical aid while reading very long tables. Currently uses a bit too many libraries (6 of them), which I'm not comfortable with - the aim is to reduce them all to 2 (i.e. `data.table` and `crayon`, both of which have no dependencies themselves). Stay tuned.
+A quick hack-y replacement for `dplyr::glimpse` for `data.table`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M). The colours are meant for differentiation, but not identifcation i.e. serves as an analytical aid while reading very long tables. Currently uses a bit too many libraries (4 of them), which I'm not comfortable with - the aim is to reduce them all to 2 (i.e. `data.table` and `crayon`, both of which have no dependencies themselves). Stay tuned.
 
 ![glean screenshot](https://github.com/avimallu/r.data.table.funs/blob/master/screens/glean.JPG?raw=true)
