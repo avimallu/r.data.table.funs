@@ -60,3 +60,8 @@ of contributors, excluding the top 90%ile of contributors, and so on.
 ```
 decile_dt(x, decreasing = TRUE)
 ```
+
+## glean
+A quick hack-y replacement for `glimpse`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M).
+
+![glean screenshot](https://github.com/avimallu/r.data.table.funs/blob/master/screens/glean.JPG?raw=true)
