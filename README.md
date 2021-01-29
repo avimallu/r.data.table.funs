@@ -61,7 +61,7 @@ of contributors, excluding the top 90%ile of contributors, and so on.
 decile_dt(x, ile = 10, decreasing = TRUE)
 ```
 
-The decile function defaults to 10 groups, but can be changed to be any `n` groups i.e. quartlie or quintile.
+The decile function defaults to 10 groups, but can be changed to be any `n` groups i.e. quartlie or quintile through the `ile` argument.
 
 ## glean
 A quick hack-y replacement for `dplyr::glimpse` for `data.table`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M). The colours are meant for differentiation, but not identifcation i.e. serves as an analytical aid while reading very long tables. Currently uses a bit too many libraries (4 of them), which I'm not comfortable with - the aim is to reduce them all to 2 (i.e. `data.table` and `crayon`, both of which have no dependencies themselves). Stay tuned.
