@@ -1,11 +1,4 @@
-
-# Required libraries ------------------------------------------------------
-
-library(data.table)
-
-# Add deciles -------------------------------------------------------------
-
-decile_dt <-  function(x, decreasing = TRUE) {
+decile_dt <-  function(x, ile = 10, decreasing = TRUE) {
   
   # x should be a numeric vector
   # Data with 0 or with NA are marked to restore them when required
@@ -29,8 +22,8 @@ decile_dt <-  function(x, decreasing = TRUE) {
           # this calculates the total fraction by maximum value
           , tot := cumsums/max(cumsums)][
             # actual decile calculation
-            , dec := (if(decreasing) 11 - ceiling(tot * 10)
-                      else ceiling(tot * 10))][
+            , dec := (if(decreasing) (ile + 1) - ceiling(tot * ile)
+                      else ceiling(tot * ile))][
                         # restore original order
                         order(num)][
                           # restore original NA values or 0 to NA
