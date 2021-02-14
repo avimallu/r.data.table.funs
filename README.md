@@ -2,7 +2,7 @@
 A set of functions that I have found very useful for speeding up my analysis work. These are well designed (imo) functions that provide a
 fast alternative to conjuring up functions yourself. These functions are free to use, I don't care (mostly) what you do with it,
 are provided without any warranty yada yada, and do not give you the right to use it in closed source products (good luck doing that with
-R code though).
+R code though). Read the LICENSE.
 
 # Contents
 ## agg_by_period
@@ -51,7 +51,7 @@ the summarized dataset will look something like:
 ```
 
 ## decile
-Often, in sales analytics, one is required to group certain categorical variables into buckets that contribute to 10% of overall sales,
+Often, in sales analytics, one is required to group certain continous variables into buckets that contribute to 10% of overall sales,
 in decreasing order of contribution. That is, in the first bucket, you'll have very few members that, together contribute to 10%, and
 this member count increases as the bucket count increases, each contributing to 10% of the overall sales. In terms of percentiles, the first
 bucket can be defined as the members that are in the top 90%ile of contributors, the second bucket will be those that are in the top 80%ile
@@ -64,6 +64,6 @@ decile_dt(x, ile = 10, decreasing = TRUE)
 The decile function defaults to 10 groups, but can be changed to be any `n` groups i.e. quartlie or quintile through the `ile` argument.
 
 ## glean
-A quick hack-y replacement for `dplyr::glimpse` for `data.table`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M). The colours are meant for differentiation, but not identifcation i.e. serves as an analytical aid while reading very long tables. Currently uses a bit too many libraries (4 of them), which I'm not comfortable with - the aim is to reduce them all to 2 (i.e. `data.table` and `crayon`, both of which have no dependencies themselves). Stay tuned.
+A quick hack-y replacement for `dplyr::glimpse` for `data.table`, but enhanced to differentiate data types by color and read numeric and integer values in human friendly styles (i.e. 4,721,123 as 4.72M). The colours are meant for differentiation, but not identifcation i.e. serves as an analytical aid while reading very long tables. Currently uses a bit too many libraries (4 of them), which I'm not comfortable with - the aim is to reduce them all to 2 (i.e. `data.table` and `crayon`, both of which have no dependencies themselves). Stay tuned - this is still very much a WIP.
 
 ![glean screenshot](https://github.com/avimallu/r.data.table.funs/blob/master/screens/glean.JPG?raw=true)
