@@ -1,3 +1,5 @@
+require(data.table)
+
 decile_dt <-  function(x, ile = 10, decreasing = TRUE) {
   
   # x should be a numeric vector
